@@ -1,0 +1,39 @@
+{
+  "name": "bunyan-bugsnag",
+  "version": "1.0.0",
+  "description": "A Bunyan stream for logging errors and warnings to Bugsnag",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marnusw/bunyan-bugsnag.git"
+  },
+  "dependencies": {
+    "bugsnag": "^1.9.0"
+  },
+  "peerDependencies": {
+    "bunyan": "^1.8.5"
+  },
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-import": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=4.7.3"
+  },
+  "author": "Marnus Weststrate <marnusw@gmail.com>",
+  "keywords": [
+    "bunyan",
+    "bugsnag",
+    "logging"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marnusw/bunyan-bugsnag/issues"
+  },
+  "homepage": "https://github.com/marnusw/bunyan-bugsnag"
+}
