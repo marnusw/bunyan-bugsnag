@@ -13,7 +13,7 @@ const levelFromName = {
 
 function bugsnagLogStream(options) {
   options = normalizeLevels(options, {
-    systemInfo: ['name', 'hostname', 'pid', 'req_id', 'level', 'v'],
+    systemInfo: ['name', 'hostname', 'pid', 'req_id', 'level', 'time', 'v'],
     warningLevel: 40,
     errorLevel: 50,
   })
