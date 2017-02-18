@@ -74,4 +74,4 @@ function bugsnagLogStream(options) {
   }
 }
 
-export default bugsnagLogStream
+module.exports = bugsnagLogStream
