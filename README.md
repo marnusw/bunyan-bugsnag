@@ -48,7 +48,7 @@ bugsnagStream({
 })
 ```
 
-Use the `warningLevel` and `errorLevel` settings to specify the which severity will be
+Use the `warningLevel` and `errorLevel` settings to specify which severity will be
 indicated to Bugsnag. For example, to send `log.error()` calls as a `warning` and only
 `log.fatal()` calls as errors set `errorLevel: 'fatal'`. Any level below `warningLevel` 
 will be sent with `info` severity if the Bunyan stream config `level` is set to pass 
