@@ -1,6 +1,6 @@
 {
   "name": "bunyan-bugsnag",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Bunyan stream for logging errors and warnings to Bugsnag",
   "main": "index.js",
   "scripts": {
