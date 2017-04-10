@@ -28,8 +28,6 @@ function bugsnagLogStream(options) {
       }
 
       const error = data.err || data.error || new Error(data.msg)
-      delete data.error
-      delete data.err
 
       const optionsMap = splitSystemAndInfo(data)
       optionsMap.severity = selectSeverity(data.level)
@@ -63,12 +61,15 @@ function bugsnagLogStream(options) {
   }
 
   function splitSystemAndInfo(data) {
+    const info = Object.assign({}, data)
+    delete info.error
+    delete info.err
+
     const systemInfo = options.systemInfo
     const system = {}
-    const info = Object.assign({}, data)
 
     for (let i = 0; i < systemInfo.length; ++i) {
-      system[systemInfo[i]] = data[systemInfo[i]]
+      system[systemInfo[i]] = info[systemInfo[i]]
       delete info[systemInfo[i]]
     }
 
