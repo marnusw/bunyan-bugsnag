@@ -1,7 +1,7 @@
 'use strict'
 
 const Stream = require('stream')
-const bugsnag = require('bugsnag')
+let bugsnag = require('bugsnag')
 
 const levelFromName = {
   trace: 10,
@@ -19,6 +19,8 @@ function bugsnagLogStream(options) {
     warningLevel: 40,
     errorLevel: 50,
   })
+
+  bugsnag = selectBugsnag(options)
 
   return new Stream.Writable({
     objectMode: true,
@@ -38,6 +40,12 @@ function bugsnagLogStream(options) {
     },
   })
 
+  function selectBugsnag(opts) {
+    if (opts.bugsnag) {
+      return opts.bugsnag
+    }
+    return bugsnag
+  }
 
   function normalizeLevels(opts, defaults) {
     opts = Object.assign(defaults, opts)
