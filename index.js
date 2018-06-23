@@ -17,8 +17,12 @@ function bugsnagLogStream(options) {
     systemInfo: ['name', 'hostname', 'pid', 'req_id', 'level', 'time', 'v'],
     warningLevel: 40,
     errorLevel: 50,
-    bugsnag: require('bugsnag')
+    bugsnag: require('bugsnag'),
   })
+
+  if (options.bugsnagApiKey) {
+    options.bugsnag.register(options.bugsnagApiKey)
+  }
 
   return new Stream.Writable({
     objectMode: true,

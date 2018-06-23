@@ -13,7 +13,13 @@ Requires Node.js `v4.7.3` or higher.
 Install via `npm`:
 
 ```
-npm install --save bunyan-bugsnag
+npm i bunyan-bugsnag
+```
+
+or with the peer dependencies:
+
+```
+npm i bunyan-bugsnag bunyan bugsnag
 ```
 
 ## Usage
@@ -28,7 +34,8 @@ const logger = bunyan.createLogger({
   streams: [{
     level: 'info',
     stream: process.stdout,
-  }, {
+  },
+  {
     type: 'raw',
     level: 'warn',
     stream: bugsnagStream(),
@@ -38,14 +45,13 @@ const logger = bunyan.createLogger({
 
 Specifying the `raw` type is optional, but improves efficiency.
 
-The stream takes the following options, with these values as defaults:
+The stream takes the following basic options. All are optional, with these values as defaults:
 
 ```javascript
 bugsnagStream({
   systemInfo: ['name', 'hostname', 'pid', 'req_id', 'level', 'time', 'v'],
   warningLevel: 'warn',
   errorLevel: 'error',
-  bugsnag: require('bugsnag')
 })
 ```
 
@@ -78,20 +84,40 @@ bugsnag.notify(error, {
 
 This will create `system` and `info` tabs in the Bugsnag report providing this information.
 
-Passing a registered bugsnag instance as an option will override the bugsnag instance that is imported from the node library.
-You can register the bugsnag library before you create the `bugsnagStream`:
+##### Bugsnag configuration
+
+The official Node.js Bugsnag client works as a singleton instance and is also imported and used 
+internally by this library. This means the Bugsnag configuration applied elsewhere will also apply
+to this stream.
+
+If this stream is the only place where Bugsnag is used, the `bugsnagApiKey` can be provided as an 
+option for convenience.
+
+```javascript
+bugsnagStream({
+  bugsnagApiKey: 'bugsnag-api-key-here',
+  // other options
+})
+```
+
+If it is ever desired to specify a specific `bugsnag` instance other than the one imported by this 
+stream it can be overridden by passing it in as an option.
 
 ```javascript
 const bugsnag = require('bugsnag')
-bugsnag.register('yourbugsnagkey')
 
-bugsnagStream({ bugsnag })
+bugsnag.register('bugsnag-api-key-here')
+
+bugsnagStream({
+  bugsnag,
+  // other options
+})
 ```
 
 
 ## Contributing
 
-This library is pretty new, any thoughts/PRs are welcome.
+Any thoughts/PRs are welcome.
 
 
 ## License
