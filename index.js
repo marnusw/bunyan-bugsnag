@@ -1,7 +1,6 @@
 'use strict'
 
 const Stream = require('stream')
-const bugsnag = require('bugsnag')
 
 const levelFromName = {
   trace: 10,
@@ -18,6 +17,7 @@ function bugsnagLogStream(options) {
     systemInfo: ['name', 'hostname', 'pid', 'req_id', 'level', 'time', 'v'],
     warningLevel: 40,
     errorLevel: 50,
+    bugsnag: require('bugsnag')
   })
 
   return new Stream.Writable({
@@ -32,12 +32,11 @@ function bugsnagLogStream(options) {
       const optionsMap = splitSystemAndInfo(data)
       optionsMap.severity = selectSeverity(data.level)
 
-      bugsnag.notify(error, optionsMap)
+      options.bugsnag.notify(error, optionsMap)
 
       return true
     },
   })
-
 
   function normalizeLevels(opts, defaults) {
     opts = Object.assign(defaults, opts)

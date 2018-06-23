@@ -45,6 +45,7 @@ bugsnagStream({
   systemInfo: ['name', 'hostname', 'pid', 'req_id', 'level', 'time', 'v'],
   warningLevel: 'warn',
   errorLevel: 'error',
+  bugsnag: require('bugsnag')
 })
 ```
 
@@ -76,6 +77,17 @@ bugsnag.notify(error, {
 ```
 
 This will create `system` and `info` tabs in the Bugsnag report providing this information.
+
+Passing a registered bugsnag instance as an option will override the bugsnag instance that is imported from the node library.
+You can register the bugsnag library before you create the `bugsnagStream`:
+
+```javascript
+const bugsnag = require('bugsnag')
+bugsnag.register('yourbugsnagkey')
+
+bugsnagStream({ bugsnag })
+```
+
 
 ## Contributing
 
