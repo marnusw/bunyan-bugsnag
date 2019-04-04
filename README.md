@@ -43,6 +43,8 @@ const logger = bunyan.createLogger({
 })
 ```
 
+## Configuration
+
 In addition to the `bugsnagClient` the stream takes the following
 optional options, with these defaults:
 
