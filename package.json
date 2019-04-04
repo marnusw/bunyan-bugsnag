@@ -2,27 +2,14 @@
   "name": "bunyan-bugsnag",
   "version": "2.0.0",
   "description": "A Bunyan stream for logging errors and warnings to Bugsnag",
-  "main": "index.js",
-  "scripts": {
-    "lint": "eslint --ignore-path .gitignore ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/marnusw/bunyan-bugsnag.git"
-  },
-  "peerDependencies": {
-    "bugsnag": ">=1.9.0",
-    "bunyan": ">=1.8.5"
-  },
-  "devDependencies": {
-    "eslint": "^3.15.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-import": "^2.2.0"
-  },
-  "engines": {
-    "node": ">=4.7.3"
-  },
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "./index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "index.d.ts"
+  ],
   "author": "Marnus Weststrate <marnusw@gmail.com>",
   "keywords": [
     "bunyan",
@@ -30,8 +17,95 @@
     "logging"
   ],
   "license": "MIT",
+  "homepage": "https://github.com/marnusw/bunyan-bugsnag",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marnusw/bunyan-bugsnag.git"
+  },
   "bugs": {
     "url": "https://github.com/marnusw/bunyan-bugsnag/issues"
   },
-  "homepage": "https://github.com/marnusw/bunyan-bugsnag"
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore .",
+    "build": "babel ./es --out-dir ./lib",
+    "prepublish": "npm run build"
+  },
+  "peerDependencies": {
+    "bunyan": ">=1.8.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@bugsnag/node": "^6.0.0",
+    "@types/node": "^11.13.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4"
+  },
+  "engines": {
+    "node": ">=6.17.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "6.17.0"
+          }
+        }
+      ]
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "eslint"
+    ],
+    "*.{js,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "airbnb-base"
+    ],
+    "rules": {
+      "semi": [
+        2,
+        "never"
+      ],
+      "no-use-before-define": [
+        2,
+        {
+          "functions": false
+        }
+      ],
+      "no-param-reassign": 0,
+      "no-plusplus": [
+        2,
+        {
+          "allowForLoopAfterthoughts": true
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
 }
