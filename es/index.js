@@ -27,10 +27,13 @@ function bugsnagLogStream(options) {
 
       const error = data.err || data.error || new Error(data.msg)
 
-      const optionsMap = splitSystemAndInfo(data)
-      optionsMap.severity = selectSeverity(data.level)
+      const { system, info } = splitSystemAndInfo(data)
 
-      bugsnagClient.notify(error, optionsMap)
+      bugsnagClient.notify(error, (event) => {
+        event.severity = selectSeverity(data.level)
+        event.addMetadata('system', system)
+        event.addMetadata('info', info)
+      })
 
       return true
     },

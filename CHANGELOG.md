@@ -1,3 +1,9 @@
+### v4.0.0 (13 January 2021)
+
+**Breaking changes**
+
+- Supports and requires `@bugsnag/js@>=7.0.0`.
+
 ### v3.0.0 (4 April 2019)
 
 **Breaking changes**

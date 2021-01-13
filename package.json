@@ -34,17 +34,17 @@
     "bunyan": ">=1.8.5"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "@bugsnag/node": "^6.0.0",
-    "@types/node": "^11.13.0",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.5",
-    "prettier": "^1.16.4"
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@bugsnag/node": "^7.5.6",
+    "@types/node": "^14.14.20",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^4.3.7",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1"
   },
   "engines": {
     "node": ">=6.17.0"
@@ -71,8 +71,7 @@
       "eslint"
     ],
     "*.{js,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "eslintConfig": {
@@ -99,7 +98,8 @@
         {
           "allowForLoopAfterthoughts": true
         }
-      ]
+      ],
+      "prefer-object-spread": 0
     }
   },
   "prettier": {
